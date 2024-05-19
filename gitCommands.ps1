@@ -8,12 +8,10 @@ Function GitCreateBranch([string]$branch) {git checkout -b $branch}
 Set-Alias -Name gcb -Value GitCreateBranch
 
 Function GitPull([string]$branch) {
-    $CurrentBranch = $(git rev-parse --abbrev-ref HEAD --)[0]
-    if ($branch -eq $null) {
-        git pull origin $CurrentBranch
-    } else {
-        git pull origin $branch
+    if ([string]::isNullOrEmpty($branch)) {
+        $branch = $(git rev-parse --abbrev-ref HEAD --)[0]
     }
+    git pull origin $branch
 }
 Set-Alias -Name ggl -Value GitPull
 
@@ -21,11 +19,9 @@ Function GitAddAll {git add --all}
 Set-Alias -Name gaa -Value GitAddAll
 
 Function GitPush ([string]$branch) {
-    $CurrentBranch = $(git rev-parse --abbrev-ref HEAD --)[0]
-    if ($branch -eq $null) {
-        git push origin $CurrentBranch
-    } else {
-        git push origin $branch
+    if ([string]::isNullOrEmpty($branch)) {
+        $branch = $(git rev-parse --abbrev-ref HEAD --)[0]
     }
+    git push origin $branch
 }
 Set-Alias -Name ggp -Value GitPush

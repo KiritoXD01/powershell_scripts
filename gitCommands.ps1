@@ -18,3 +18,11 @@ Set-Alias -Name ggl -Value GitPull
 
 Function GitAddAll {git add -all}
 Set-Alias -Name gaa -Value GitAddAll
+
+Function GitPush ([string]$branch) {
+    if ($null -eq $branch) {
+        git push
+    } else {
+        git push origin $branch
+    }
+}

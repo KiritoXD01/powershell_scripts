@@ -4,7 +4,10 @@ Set-Alias -Name gst -Value GitStatus
 Function GitCheckout ([string]$branch) {git checkout $branch}
 Set-Alias -Name gco -Value GitCheckout
 
-Function GitCreateBranch([string]$branch) {git checkout -b $branch}
+Function GitCreateBranch([string]$branch) {
+    git checkout -b $branch
+    git checkout $branch
+}
 Set-Alias -Name gcb -Value GitCreateBranch
 
 Function GitPull([string]$branch) {
@@ -28,3 +31,6 @@ Set-Alias -Name ggp -Value GitPush
 
 Function GitFetchAll {git fetch --all --prune}
 Set-Alias -Name gfa -Value GitFetchAll
+
+Function GitDeleteBranch ([string]$branch) {git branch -D $branch}
+Set-Alias -Name gbd -Value GitDeleteBranch

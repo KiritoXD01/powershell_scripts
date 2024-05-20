@@ -25,3 +25,6 @@ Function GitPush ([string]$branch) {
     git push origin $branch
 }
 Set-Alias -Name ggp -Value GitPush
+
+Function GitFetchAll {git fetch --all --prune}
+Set-Alias -Name gfa -Value GitFetchAll
